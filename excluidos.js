@@ -14,10 +14,12 @@ function mostrarExcluidos() {
             <p><strong>👤 Nome:</strong> ${cliente.nome}</p>
             <p><strong>📞 Telefone:</strong> ${cliente.telefone}</p>
             <p><strong>📍 Cidade:</strong> ${cliente.cidadeEstado}</p>
-            <p><strong>🗑 Excluído em:</strong> ${cliente.dataExclusao}</p>
+            <p><strong>🗑 Excluído em:</strong> ${cliente.dataExclusao || 'Não informado'}</p>
         `;
 
-        // BOTÃO RESTAURAR
+        // =========================
+        // ♻ BOTÃO RESTAURAR
+        // =========================
         const btnRestaurar = document.createElement('button');
         btnRestaurar.innerText = '♻ Restaurar';
 
@@ -25,7 +27,6 @@ function mostrarExcluidos() {
 
             let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 
-            // 🔎 VERIFICA SE JÁ EXISTE
             const jaExiste = clientes.some(c => c.telefone === cliente.telefone);
 
             if (jaExiste) {
@@ -33,18 +34,38 @@ function mostrarExcluidos() {
                 return;
             }
 
-            // ♻ RESTAURA
             clientes.push(cliente);
             localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
-            // 🗑 REMOVE DA LIXEIRA
             excluidos.splice(index, 1);
             localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
             mostrarExcluidos();
         };
 
+        // =========================
+        // ❌ BOTÃO EXCLUIR DEFINITIVO
+        // =========================
+        const btnExcluirDefinitivo = document.createElement('button');
+        btnExcluirDefinitivo.innerText = '❌ Excluir definitivo';
+        btnExcluirDefinitivo.style.marginLeft = '10px';
+
+        btnExcluirDefinitivo.onclick = () => {
+            if (confirm("Excluir permanentemente este cliente?")) {
+
+                excluidos.splice(index, 1);
+                localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+
+                mostrarExcluidos();
+            }
+        };
+
+        // =========================
+        // ADICIONA NO CARD
+        // =========================
         card.appendChild(btnRestaurar);
+        card.appendChild(btnExcluirDefinitivo);
+
         lista.appendChild(card);
     });
 }
