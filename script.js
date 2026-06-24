@@ -83,9 +83,20 @@ if (listaClientes) {
     // 4. salva lista atualizada
     localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
-    // 5. recarrega tela
-    mostrarClientes();
-}
+    const inputBusca = document.getElementById('buscaExcluidos');
+
+inputBusca.addEventListener('input', () => {
+    mostrarExcluidos(inputBusca.value);
+});
+                        function mostrarExcluidos(filtro = '') {
+    lista.innerHTML = '';
+
+    excluidos
+    .filter(cliente =>
+        cliente.nome.toLowerCase().includes(filtro.toLowerCase()) ||
+        cliente.telefone.includes(filtro)
+    )
+    .forEach((cliente, index) => {
                 }
             });
             const status = document.createElement('div');
