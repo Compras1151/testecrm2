@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histórico do Cliente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2 id="nomeCliente">Histórico</h2>
+
+        <label><strong>Endereço Completo</strong></label>
+<input type="text" id="endereco" placeholder="Rua, número, bairro, cidade, estado">
+
+<br><br>
+
+<label><strong>A churrasqueira está:</strong></label>
+<select id="situacaoObra">
+    <option value="">Selecione</option>
+    <option value="pronta">Pronta</option>
+    <option value="construindo">Ainda Construindo</option>
+</select>
+
+<br>
+
+<label><strong>Possui projeto arquitetônico?</strong></label>
+<select id="projetoArquitetonico">
+    <option value="">Selecione</option>
+    <option value="sim">Sim</option>
+    <option value="nao">Não</option>
+</select>
+
+<br>
+
+<label><strong>Linha de Interesse?</strong></label>
+<select id="linhaInteresse">
+    <option value="">Selecione</option>
+    <option value="sim">Basic</option>
+    <option value="sim">Standard</option>
+    <option value="nao">Premium</option>
+    <option value="nao">Outro</option>
+</select>
+
+<br>
+
+<label><strong>Caso seja outro, descreva qual modelo é abaixo:</strong></label>
+<textarea
+    id="Outro"
+    rows="1"
+    placeholder="Anote qual tipo de modelo é..."
+></textarea>
+
+<br>
+
+<label><strong>Profundidade</strong></label>
+<textarea
+    id="Profundidade"
+    rows="1"
+    placeholder="Anote a profundidade..."
+></textarea>
+
+<br>
+
+<label><strong>Largura</strong></label>
+<textarea
+    id="Largura"
+    rows="1"
+    placeholder="Anote a Largura da Boca e a Largura Interna..."
+></textarea>
+
+<br>
+
+<label><strong>Comprimento</strong></label>
+<textarea
+    id="Comprimento"
+    rows="1"
+    placeholder="Anote o Comprimento Externo e Interno..."
+></textarea>
+
+<br>
+
+<label><strong>Valor da Proposta ou valor a ser cobrado:</strong></label>
+<textarea
+    id="Valor"
+    rows="1"
+    placeholder="Anote o valor a ser cobrado ou a ser proposto..."
+></textarea>
+
+<br>
+
+<label for="data">Data em que proposta foi feita:</label>
+<input type="date" id="dataProposta" name="data">
+
+<br>
+
+<label for="data">Data de Retorno Prevista:</label>
+<input type="date" id="dataRetorno" name="data">
+
+<br>
+
+<label><strong>Observações</strong></label>
+<textarea
+    id="observacoes"
+    rows="4"
+    placeholder="Informações adicionais sobre o cliente..."
+></textarea>
+
+        <button id="salvarHistorico">
+            💾 Salvar Histórico
+        </button>
+
+        <br><br>
+
+        <a href="clientes.html" class="btn-voltar">
+            ⬅️ Voltar
+        </a>
+    </div>
+
+    <script src="historico.js"></script>
+
+</body>
+</html>
