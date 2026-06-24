@@ -4,91 +4,126 @@ const lista = document.getElementById('listaExcluidos');
 const inputBusca = document.getElementById('buscaExcluidos');
 
 // 🔍 BUSCA
-inputBusca.addEventListener('input', () => {
-    mostrarExcluidos(inputBusca.value);
-});
+if (inputBusca) {
+    inputBusca.addEventListener('input', () => {
+        mostrarExcluidos(inputBusca.value);
+    });
+}
 
 // =========================
 // FUNÇÃO PRINCIPAL
 // =========================
 function mostrarExcluidos(filtro = '') {
+
     lista.innerHTML = '';
 
-    excluidos
-        .filter(cliente =>
-            cliente.nome.toLowerCase().includes(filtro.toLowerCase()) ||
-            cliente.telefone.includes(filtro)
-        )
-        .forEach((cliente, index) => {
+    const excluidosFiltrados = excluidos.filter(cliente =>
+        (cliente.nome || '').toLowerCase().includes(filtro.toLowerCase()) ||
+        (cliente.telefone || '').includes(filtro)
+    );
 
-            const card = document.createElement('div');
-            card.className = 'cliente-card';
+    excluidosFiltrados.forEach((cliente) => {
 
-            card.innerHTML = `
-                <p><strong>👤 Nome:</strong> ${cliente.nome}</p>
-                <p><strong>📞 Telefone:</strong> ${cliente.telefone}</p>
-                <p><strong>📍 Cidade:</strong> ${cliente.cidadeEstado}</p>
-                <p><strong>🗑 Excluído em:</strong> ${cliente.dataExclusao || 'Não informado'}</p>
-            `;
+        const card = document.createElement('div');
+        card.className = 'cliente-card';
 
-            // =========================
-            // ♻ BOTÃO RESTAURAR
-            // =========================
-            const btnRestaurar = document.createElement('button');
-            btnRestaurar.innerText = '♻ Restaurar';
+        card.innerHTML = `
+            <p><strong>👤 Nome:</strong> ${cliente.nome || 'Não informado'}</p>
+            <p><strong>📞 Telefone:</strong> ${cliente.telefone || 'Não informado'}</p>
+            <p><strong>📍 Cidade:</strong> ${cliente.cidadeEstado || 'Não informado'}</p>
+            <p><strong>🗑 Excluído em:</strong> ${cliente.dataExclusao || 'Não informado'}</p>
+        `;
 
-            btnRestaurar.onclick = () => {
+        // =========================
+        // ♻ RESTAURAR
+        // =========================
+        const btnRestaurar = document.createElement('button');
+        btnRestaurar.innerText = '♻ Restaurar';
 
-                let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
+        btnRestaurar.onclick = () => {
 
-                const jaExiste = clientes.some(c => c.telefone === cliente.telefone);
+            let clientes = JSON.parse(
+                localStorage.getItem('clientesCadastrados')
+            ) || [];
 
-                if (jaExiste) {
-                    alert("Esse cliente já existe na lista ativa!");
-                    return;
-                }
+            const jaExiste = clientes.some(
+                c => c.telefone === cliente.telefone
+            );
 
-                clientes.push(cliente);
-                localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+            if (jaExiste) {
+                alert('Esse cliente já existe na lista ativa!');
+                return;
+            }
 
-                alert("♻ Cliente restaurado com sucesso!");
+            // adiciona na lista principal
+            clientes.push(cliente);
 
-                excluidos.splice(index, 1);
-                localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+            localStorage.setItem(
+                'clientesCadastrados',
+                JSON.stringify(clientes)
+            );
 
-                mostrarExcluidos();
-            };
+            // remove da lixeira pela posição real
+            const posicaoReal = excluidos.findIndex(
+                c => c.telefone === cliente.telefone
+            );
 
-            // =========================
-            // ❌ BOTÃO EXCLUIR DEFINITIVO
-            // =========================
-            const btnExcluirDefinitivo = document.createElement('button');
-            btnExcluirDefinitivo.innerText = '❌ Excluir definitivo';
-            btnExcluirDefinitivo.style.marginLeft = '10px';
+            if (posicaoReal !== -1) {
+                excluidos.splice(posicaoReal, 1);
 
-            btnExcluirDefinitivo.onclick = () => {
-                if (confirm("Excluir permanentemente este cliente?")) {
+                localStorage.setItem(
+                    'leadsExcluidos',
+                    JSON.stringify(excluidos)
+                );
+            }
 
-                    excluidos.splice(index, 1);
-                    localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+            alert('♻ Cliente restaurado com sucesso!');
 
-                    mostrarExcluidos();
-                }
-            };
+            mostrarExcluidos(inputBusca?.value || '');
+        };
 
-            // =========================
-            // ADICIONA NO CARD
-            // =========================
-            const areaBotoes = document.createElement('div');
-areaBotoes.className = 'area-botoes';
+        // =========================
+        // ❌ EXCLUIR DEFINITIVO
+        // =========================
+        const btnExcluirDefinitivo = document.createElement('button');
+        btnExcluirDefinitivo.innerText = '❌ Excluir definitivo';
 
-areaBotoes.appendChild(btnRestaurar);
-areaBotoes.appendChild(btnExcluirDefinitivo);
+        btnExcluirDefinitivo.onclick = () => {
 
-card.appendChild(areaBotoes);
+            if (!confirm('Excluir permanentemente este cliente?')) {
+                return;
+            }
 
-            lista.appendChild(card);
-        });
+            const posicaoReal = excluidos.findIndex(
+                c => c.telefone === cliente.telefone
+            );
+
+            if (posicaoReal !== -1) {
+
+                excluidos.splice(posicaoReal, 1);
+
+                localStorage.setItem(
+                    'leadsExcluidos',
+                    JSON.stringify(excluidos)
+                );
+            }
+
+            mostrarExcluidos(inputBusca?.value || '');
+        };
+
+        // =========================
+        // ÁREA DOS BOTÕES
+        // =========================
+        const areaBotoes = document.createElement('div');
+        areaBotoes.className = 'area-botoes';
+
+        areaBotoes.appendChild(btnRestaurar);
+        areaBotoes.appendChild(btnExcluirDefinitivo);
+
+        card.appendChild(areaBotoes);
+
+        lista.appendChild(card);
+    });
 }
 
 // inicializa
