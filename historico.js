@@ -1,3 +1,18 @@
+function mostrarToast(mensagem, tipo = "sucesso") {
+
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+
+    toast.className = `toast ${tipo}`;
+    toast.innerText = mensagem;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
 const usuarioLogado = localStorage.getItem('usuarioLogado');
 
 if (!usuarioLogado) {
@@ -128,5 +143,5 @@ btnSalvar.addEventListener('click', () => {
         JSON.stringify(clientes)
     );
 
-    alert('Histórico salvo com sucesso!');
+    mostrarToast("Histórico salvo com sucesso!");
 });
