@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const telefone = inputTelefone.value.trim().replace(/\D/g, '');
 
         if (!nome || !cidadeEstado || !telefone) {
-            alert('Preencha todos os campos!');
+                   mostrarToast("Preencha todos os campos!");
             return;
         }
 
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3000);
 }
 
-       mostrarToast("Cliente cadastrado com sucesso!", "sucesso");
+       mostrarToast("Cliente cadastrado com sucesso!");
     });
 
 });
