@@ -13,3 +13,19 @@ function atualizarContadorExcluidos() {
 }
 
 atualizarContadorExcluidos();
+
+const btnSair =
+document.getElementById('btnSair');
+
+if (btnSair) {
+
+    btnSair.addEventListener('click', () => {
+
+        localStorage.removeItem(
+            'usuarioLogado'
+        );
+
+        window.location.href =
+            'login.html';
+    });
+}
