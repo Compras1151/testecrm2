@@ -55,50 +55,31 @@ if (listaClientes) {
             const card = document.createElement('div');
             card.className = 'cliente-card';
             
-            // 1. Criar o botão de lixeira redondo
-            const btnExcluir = document.createElement('button');
-            btnExcluir.className = 'btn-excluir';
-            btnExcluir.innerHTML = '🗑️';
-            btnExcluir.title = 'Excluir Cliente';
-            
-            // Lógica do clique para excluir
             btnExcluir.addEventListener('click', () => {
-                // Confirmação de segurança antes de apagar
-                if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
-                    // Remove 1 item do array na posição escolhida (index)
-                    if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
 
-    // 1. adiciona na lixeira
-    excluidos.push({
-        ...cliente,
-        dataExclusao: new Date().toLocaleString()
-    });
+   btnExcluir.addEventListener('click', () => {
 
-    // 2. salva lixeira
-    localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+    if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
 
-    // 3. remove da lista principal
-    clientes.splice(index, 1);
+        // 1. adiciona na lixeira
+        excluidos.push({
+            ...cliente,
+            dataExclusao: new Date().toLocaleString()
+        });
 
-    // 4. salva lista atualizada
-    localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+        // 2. salva lixeira
+        localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
-    const inputBusca = document.getElementById('buscaExcluidos');
+        // 3. remove da lista principal
+        clientes.splice(index, 1);
 
-inputBusca.addEventListener('input', () => {
-    mostrarExcluidos(inputBusca.value);
+        // 4. salva lista atualizada
+        localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+
+        // 5. atualiza tela
+        mostrarClientes();
+    }
 });
-                        function mostrarExcluidos(filtro = '') {
-    lista.innerHTML = '';
-
-    excluidos
-    .filter(cliente =>
-        cliente.nome.toLowerCase().includes(filtro.toLowerCase()) ||
-        cliente.telefone.includes(filtro)
-    )
-    .forEach((cliente, index) => {
-                }
-            });
             const status = document.createElement('div');
 
 const selectStatus = document.createElement('select');
