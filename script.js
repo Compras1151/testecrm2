@@ -43,122 +43,117 @@ const novoCliente = {
     });
 }
 
-// LÓGICA DA PÁGINA DA LISTA (clientes.html)
-const listaClientes = document.getElementById('listaClientes');
+function mostrarClientes() {
+    listaClientes.innerHTML = '';
 
-if (listaClientes) {
-    function mostrarClientes() {
-        listaClientes.innerHTML = '';
-        
-        // Usamos o 'index' para saber a posição exata de cada cliente no array
-const btnExcluir = document.createElement('button');
-btnExcluir.innerText = '🗑 Excluir';
-btnExcluir.className = 'btn-excluir';
+    clientes.forEach((cliente, index) => {
 
-btnExcluir.addEventListener('click', () => {
+        const card = document.createElement('div');
+        card.className = 'cliente-card';
 
-    if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
+        // =====================
+        // BOTÃO EXCLUIR
+        // =====================
+        const btnExcluir = document.createElement('button');
+        btnExcluir.innerText = '🗑 Excluir';
+        btnExcluir.className = 'btn-excluir';
 
-        // 1. adiciona na lixeira
-        excluidos.push({
-            ...cliente,
-            dataExclusao: new Date().toLocaleString()
-        });
+        btnExcluir.addEventListener('click', () => {
 
-        localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+            if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
 
-        // 2. remove da lista principal
-        clientes.splice(index, 1);
+                excluidos.push({
+                    ...cliente,
+                    dataExclusao: new Date().toLocaleString()
+                });
 
-        localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+                localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
-        // 3. atualiza tela
-        mostrarClientes();
-    }
-});
-            const status = document.createElement('div');
+                clientes.splice(index, 1);
+                localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
-const selectStatus = document.createElement('select');
-
-selectStatus.className = 'select-status';
-
-selectStatus.innerHTML = `
-    <option value="lead">🟢 Lead</option>
-    <option value="desclassificado">🔴 Desclassificado</option>
-    <option value="proposta">🔵 Proposta Enviada</option>
-    <option value="naoRespondeu">🟡 Não Respondeu</option>
-    <option value="venda">⚫ Venda</option>
-    <option value="semRetorno">🟣 Proposta sem Retorno</option>
-`;
-
-selectStatus.value = cliente.status || 'lead';
-
-selectStatus.addEventListener('change', () => {
-    cliente.status = selectStatus.value;
-
-    localStorage.setItem(
-        'clientesCadastrados',
-        JSON.stringify(clientes)
-    );
-});
-
-            // 2. Criar os textos do card
-            const infoNome = document.createElement('p');
-            infoNome.innerHTML = `<strong>👤 Nome:</strong><br>${cliente.nome}`;
-
-            const infoCidade = document.createElement('p');
-infoCidade.innerHTML = `<strong>📍 Cidade/Estado:</strong><br>${cliente.cidadeEstado || 'Não informado'}`;
-
-            const infoTelefone = document.createElement('p');
-            infoTelefone.innerHTML = `<strong>📞 Tel:</strong> ${cliente.telefone || 'Não informado'}`;
-
-            const infoData = document.createElement('p');
-infoData.innerHTML = `<strong>📅 Cadastro:</strong> ${cliente.dataCadastro || 'Não informado'}`;
-
-            // 3. Criar o link do WhatsApp (CORRIGIDO COM /$ )
-            const linkWhats = document.createElement('a');
-
-            // Limpa o texto deixando apenas números
-            let telefoneLimpo = cliente.telefone.replace(/\D/g, '');
-
-            // Se foi digitado sem o 55, adiciona automaticamente
-            if (telefoneLimpo.length <= 11 && telefoneLimpo.length >= 10) {
-                telefoneLimpo = '55' + telefoneLimpo;
+                mostrarClientes();
             }
-
-            // CORREÇÃO AQUI: Adicionado a barra '/' e o '$' antes da chave
-            linkWhats.href = `https://wa.me/${telefoneLimpo}`; 
-
-            linkWhats.target = "_blank"; 
-            linkWhats.className = "btn-whatsapp";
-            linkWhats.innerHTML = "💬 Chamar no WhatsApp";
-
-            // Botão Histórico
-const btnHistorico = document.createElement('a');
-
-btnHistorico.href = `historico.html?id=${index}`;
-btnHistorico.className = 'btn-historico';
-btnHistorico.innerHTML = '📋 Ver Histórico';
-
-            // 4. Montar o card na ordem certa (A lixeira entra primeiro)
-card.appendChild(btnExcluir);
-
-card.appendChild(selectStatus);
-card.appendChild(infoNome);
-card.appendChild(infoCidade);
-card.appendChild(infoTelefone);;
-card.appendChild(infoData);
-card.appendChild(btnHistorico);
-
-card.appendChild(linkWhats);
-            
-            listaClientes.appendChild(card);
         });
-    }
-    
-    mostrarClientes();
 
+        // =====================
+        // STATUS
+        // =====================
+        const selectStatus = document.createElement('select');
+        selectStatus.className = 'select-status';
+
+        selectStatus.innerHTML = `
+            <option value="lead">🟢 Lead</option>
+            <option value="desclassificado">🔴 Desclassificado</option>
+            <option value="proposta">🔵 Proposta Enviada</option>
+            <option value="naoRespondeu">🟡 Não Respondeu</option>
+            <option value="venda">⚫ Venda</option>
+            <option value="semRetorno">🟣 Proposta sem Retorno</option>
+        `;
+
+        selectStatus.value = cliente.status || 'lead';
+
+        selectStatus.addEventListener('change', () => {
+            cliente.status = selectStatus.value;
+            localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+        });
+
+        // =====================
+        // INFO
+        // =====================
+        const infoNome = document.createElement('p');
+        infoNome.innerHTML = `<strong>👤 Nome:</strong><br>${cliente.nome}`;
+
+        const infoCidade = document.createElement('p');
+        infoCidade.innerHTML = `<strong>📍 Cidade:</strong><br>${cliente.cidadeEstado}`;
+
+        const infoTelefone = document.createElement('p');
+        infoTelefone.innerHTML = `<strong>📞 Tel:</strong> ${cliente.telefone}`;
+
+        const infoData = document.createElement('p');
+        infoData.innerHTML = `<strong>📅 Cadastro:</strong> ${cliente.dataCadastro}`;
+
+        // =====================
+        // WHATSAPP
+        // =====================
+        const linkWhats = document.createElement('a');
+
+        let telefoneLimpo = cliente.telefone.replace(/\D/g, '');
+
+        if (telefoneLimpo.length <= 11) {
+            telefoneLimpo = '55' + telefoneLimpo;
+        }
+
+        linkWhats.href = `https://wa.me/${telefoneLimpo}`;
+        linkWhats.target = "_blank";
+        linkWhats.className = "btn-whatsapp";
+        linkWhats.innerText = "💬 Chamar no WhatsApp";
+
+        // =====================
+        // HISTÓRICO
+        // =====================
+        const btnHistorico = document.createElement('a');
+        btnHistorico.href = `historico.html?id=${index}`;
+        btnHistorico.className = 'btn-historico';
+        btnHistorico.innerText = '📋 Ver Histórico';
+
+        // =====================
+        // MONTAGEM DO CARD
+        // =====================
+        card.appendChild(btnExcluir);
+        card.appendChild(selectStatus);
+        card.appendChild(infoNome);
+        card.appendChild(infoCidade);
+        card.appendChild(infoTelefone);
+        card.appendChild(infoData);
+        card.appendChild(btnHistorico);
+        card.appendChild(linkWhats);
+
+        listaClientes.appendChild(card);
+    });
 }
+
+mostrarClientes();
 function abrirHistorico(index) {
     const cliente = clientes[index];
 
