@@ -1,37 +1,44 @@
-console.log("cadastro.js carregou");
-let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
+document.addEventListener('DOMContentLoaded', () => {
 
-const inputNome = document.getElementById('nome');
-const inputCidadeEstado = document.getElementById('cidadeEstado');
-const inputTelefone = document.getElementById('telefone');
-const btnSalvar = document.getElementById('btnSalvar');
+    let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 
-btnSalvar.addEventListener('click', () => {
+    const inputNome = document.getElementById('nome');
+    const inputCidadeEstado = document.getElementById('cidadeEstado');
+    const inputTelefone = document.getElementById('telefone');
+    const btnSalvar = document.getElementById('btnSalvar');
 
-    const nome = inputNome.value.trim();
-    const cidadeEstado = inputCidadeEstado.value.trim();
-    const telefone = inputTelefone.value.trim().replace(/\D/g, '');
-
-    if (!nome || !cidadeEstado || !telefone) {
-        alert('Preencha todos os campos!');
+    if (!btnSalvar) {
+        console.log("Botão não encontrado");
         return;
     }
 
-    const novoCliente = {
-        nome,
-        cidadeEstado,
-        telefone,
-        historico: '',
-        dataCadastro: new Date().toLocaleDateString('pt-BR'),
-        status: 'lead'
-    };
+    btnSalvar.addEventListener('click', () => {
 
-    clientes.push(novoCliente);
-    localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+        const nome = inputNome.value.trim();
+        const cidadeEstado = inputCidadeEstado.value.trim();
+        const telefone = inputTelefone.value.trim().replace(/\D/g, '');
 
-    inputNome.value = '';
-    inputCidadeEstado.value = '';
-    inputTelefone.value = '';
+        if (!nome || !cidadeEstado || !telefone) {
+            alert('Preencha todos os campos!');
+            return;
+        }
 
-    alert('Cliente cadastrado com sucesso!');
+        clientes.push({
+            nome,
+            cidadeEstado,
+            telefone,
+            historico: '',
+            dataCadastro: new Date().toLocaleDateString('pt-BR'),
+            status: 'lead'
+        });
+
+        localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+
+        inputNome.value = '';
+        inputCidadeEstado.value = '';
+        inputTelefone.value = '';
+
+        alert('Cliente cadastrado com sucesso!');
+    });
+
 });
