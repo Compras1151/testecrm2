@@ -79,8 +79,13 @@ function mostrarExcluidos(filtro = '') {
             // =========================
             // ADICIONA NO CARD
             // =========================
-            card.appendChild(btnRestaurar);
-            card.appendChild(btnExcluirDefinitivo);
+            const areaBotoes = document.createElement('div');
+areaBotoes.className = 'area-botoes';
+
+areaBotoes.appendChild(btnRestaurar);
+areaBotoes.appendChild(btnExcluirDefinitivo);
+
+card.appendChild(areaBotoes);
 
             lista.appendChild(card);
         });
