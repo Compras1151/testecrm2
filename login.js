@@ -1,11 +1,19 @@
 const usuarios = [
     {
-        nome: "João Silva",
-        senha: "123456"
+        nome: "Letícia de Avila Dalpra",
+        senha: "Leticia27/12/2007"
     },
     {
-        nome: "Maria Oliveira",
-        senha: "abc123"
+        nome: "Isael",
+        senha: "Isael03/09"
+    },
+    {
+        nome: "Ismael Maikon Junckes",
+        senha: "Ismael27/07"
+    },
+    {
+        nome: "Mateus",
+        senha: "Mateus2026"
     }
 ];
 
