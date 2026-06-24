@@ -5,6 +5,13 @@ const listaClientes = document.getElementById('listaClientes');
 
 function mostrarClientes() {
 
+    function mostrarClientes() {
+
+    // recarrega do localStorage toda vez
+    clientes = JSON.parse(
+        localStorage.getItem('clientesCadastrados')
+    ) || [];
+
     listaClientes.innerHTML = '';
 
     clientes.forEach((cliente, index) => {
