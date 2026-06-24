@@ -1,5 +1,6 @@
 // Carrega os clientes salvos ou inicia uma lista totalmente vazia
 let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
+let excluidos = JSON.parse(localStorage.getItem('leadsExcluidos')) || [];
 
 
 // LÓGICA DA PÁGINA DE CADASTRO (index.html)
@@ -65,13 +66,26 @@ if (listaClientes) {
                 // Confirmação de segurança antes de apagar
                 if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
                     // Remove 1 item do array na posição escolhida (index)
-                    clientes.splice(index, 1); 
-                    
-                    // Atualiza o LocalStorage com a lista nova
-                    localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
-                    
-                    // Recarrega os cards atualizados na tela
-                    mostrarClientes();
+                    if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
+
+    // 1. adiciona na lixeira
+    excluidos.push({
+        ...cliente,
+        dataExclusao: new Date().toLocaleString()
+    });
+
+    // 2. salva lixeira
+    localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
+
+    // 3. remove da lista principal
+    clientes.splice(index, 1);
+
+    // 4. salva lista atualizada
+    localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
+
+    // 5. recarrega tela
+    mostrarClientes();
+}
                 }
             });
             const status = document.createElement('div');
