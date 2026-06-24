@@ -254,3 +254,17 @@ label {
         transform: translateY(0);
     }
 }
+.area-botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.area-botoes button {
+    flex: 1;
+}
+.area-botoes button {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
