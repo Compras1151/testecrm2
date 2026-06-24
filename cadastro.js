@@ -1,3 +1,4 @@
+console.log("cadastro.js carregou");
 let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 
 const inputNome = document.getElementById('nome');
