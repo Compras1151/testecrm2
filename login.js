@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         usuarios = [
             {
-                nome: "Administrador",
-                senha: "123456",
+                nome: "Administradora",
+                senha: "Leticia27/12/2007",
                 cargo: "admin"
             }
         ];
