@@ -6,11 +6,15 @@
     <title>CRM - Painel Principal</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
 <div class="container">
 
     <h1>📊 CRM - Painel Principal</h1>
+
+    <!-- 📊 CONTADOR DE EXCLUÍDOS -->
+    <div id="contadorExcluidos" style="margin-bottom: 15px; font-weight: bold;"></div>
 
     <div class="menu-cards">
 
@@ -38,6 +42,16 @@
     </div>
 
 </div>
+
+<script>
+    function atualizarContadorExcluidos() {
+        let excluidos = JSON.parse(localStorage.getItem('leadsExcluidos')) || [];
+        document.getElementById('contadorExcluidos').innerText =
+            `🗑 Leads excluídos: ${excluidos.length}`;
+    }
+
+    atualizarContadorExcluidos();
+</script>
 
 </body>
 </html>
