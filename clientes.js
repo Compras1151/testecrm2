@@ -1,3 +1,8 @@
+const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+if (!usuarioLogado) {
+    window.location.href = 'login.html';
+}
 let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 let excluidos = JSON.parse(localStorage.getItem('leadsExcluidos')) || [];
 
