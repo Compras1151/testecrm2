@@ -1,3 +1,18 @@
+function mostrarToast(mensagem, tipo = "sucesso") {
+
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+
+    toast.className = `toast ${tipo}`;
+    toast.innerText = mensagem;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
 document.addEventListener('DOMContentLoaded', () => {
 
     let usuarios = JSON.parse(localStorage.getItem('usuariosCRM'));
@@ -32,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         );
 
         if (!usuario) {
-            alert('Usuário ou senha inválidos');
+mostrarToast("Usuário ou senha inválidos!"); 
             return;
         }
 
