@@ -1,44 +1,55 @@
-const usuarios = [
-    {
-        nome: "Letícia de Avila Dalpra",
-        senha: "Leticia27/12/2007"
-    },
-    {
-        nome: "Isael",
-        senha: "Isael03/09"
-    },
-    {
-        nome: "Ismael Maikon Junckes",
-        senha: "Ismael27/07"
-    },
-    {
-        nome: "Mateus",
-        senha: "Mateus2026"
+document.addEventListener('DOMContentLoaded', () => {
+
+    // cria admin automaticamente na primeira vez
+    let usuarios = JSON.parse(localStorage.getItem('usuariosCRM'));
+
+    if (!usuarios) {
+
+        usuarios = [
+            {
+                nome: "Administrador",
+                senha: "123456",
+                cargo: "admin"
+            }
+        ];
+
+        localStorage.setItem(
+            'usuariosCRM',
+            JSON.stringify(usuarios)
+        );
     }
-];
 
-document.getElementById('btnEntrar').addEventListener('click', () => {
+    const btnEntrar = document.getElementById('btnEntrar');
 
-    const usuario = document.getElementById('usuario').value.trim();
-    const senha = document.getElementById('senha').value;
+    btnEntrar.addEventListener('click', () => {
 
-    const encontrado = usuarios.find(
-        u => u.nome === usuario && u.senha === senha
-    );
+        const nome = document
+            .getElementById('usuario')
+            .value
+            .trim();
 
-    if (encontrado) {
+        const senha = document
+            .getElementById('senha')
+            .value;
+
+        const usuario = usuarios.find(
+            u =>
+                u.nome === nome &&
+                u.senha === senha
+        );
+
+        if (!usuario) {
+
+            alert('Usuário ou senha inválidos');
+            return;
+        }
 
         localStorage.setItem(
             'usuarioLogado',
-            JSON.stringify(encontrado)
+            JSON.stringify(usuario)
         );
 
         window.location.href = 'index.html';
-
-    } else {
-
-        alert('Usuário ou senha inválidos');
-
-    }
+    });
 
 });
