@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // cria admin automaticamente na primeira vez
     let usuarios = JSON.parse(localStorage.getItem('usuariosCRM'));
 
-    if (!usuarios) {
+    // cria admin se não existir nada
+    if (!usuarios || usuarios.length === 0) {
 
         usuarios = [
             {
-                nome: "Administradora",
-                senha: "Leticia27/12/2007",
+                nome: "Administrador",
+                senha: "123456",
                 cargo: "admin"
             }
         ];
@@ -23,23 +23,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnEntrar.addEventListener('click', () => {
 
-        const nome = document
-            .getElementById('usuario')
-            .value
-            .trim();
+        const nome = document.getElementById('usuario').value.trim();
+        const senha = document.getElementById('senha').value.trim();
 
-        const senha = document
-            .getElementById('senha')
-            .value;
-
-        const usuario = usuarios.find(
-            u =>
-                u.nome === nome &&
-                u.senha === senha
+        const usuario = usuarios.find(u =>
+            u.nome.toLowerCase() === nome.toLowerCase() &&
+            u.senha === senha
         );
 
         if (!usuario) {
-
             alert('Usuário ou senha inválidos');
             return;
         }
