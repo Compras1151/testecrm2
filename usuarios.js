@@ -1,3 +1,19 @@
+function mostrarToast(mensagem, tipo = "sucesso") {
+
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+
+    toast.className = `toast ${tipo}`;
+    toast.innerText = mensagem;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
 const usuarioLogado = JSON.parse(
     localStorage.getItem('usuarioLogado')
 );
@@ -7,8 +23,7 @@ if (
     usuarioLogado.cargo !== 'admin'
 ) {
 
-    alert('Acesso permitido apenas para administrador');
-
+    mostrarToast("Acesso permitido apenas para administrador");
     window.location.href = 'index.html';
 }
 
