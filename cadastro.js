@@ -43,7 +43,23 @@ document.addEventListener('DOMContentLoaded', () => {
         inputCidadeEstado.value = '';
         inputTelefone.value = '';
 
-        alert('Cliente cadastrado com sucesso!');
+        function mostrarToast(mensagem, tipo = "sucesso") {
+
+    const container = document.getElementById('toast-container');
+
+    const toast = document.createElement('div');
+
+    toast.className = `toast ${tipo}`;
+    toast.innerText = mensagem;
+
+    container.appendChild(toast);
+
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+       mostrarToast("Cliente cadastrado com sucesso!", "sucesso");
     });
 
 });
