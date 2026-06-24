@@ -51,13 +51,11 @@ if (listaClientes) {
         listaClientes.innerHTML = '';
         
         // Usamos o 'index' para saber a posição exata de cada cliente no array
-        clientes.forEach((cliente, index) => {
-            const card = document.createElement('div');
-            card.className = 'cliente-card';
-            
-            btnExcluir.addEventListener('click', () => {
+const btnExcluir = document.createElement('button');
+btnExcluir.innerText = '🗑 Excluir';
+btnExcluir.className = 'btn-excluir';
 
-   btnExcluir.addEventListener('click', () => {
+btnExcluir.addEventListener('click', () => {
 
     if (confirm(`Tem certeza que deseja excluir ${cliente.nome}?`)) {
 
@@ -67,16 +65,14 @@ if (listaClientes) {
             dataExclusao: new Date().toLocaleString()
         });
 
-        // 2. salva lixeira
         localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
-        // 3. remove da lista principal
+        // 2. remove da lista principal
         clientes.splice(index, 1);
 
-        // 4. salva lista atualizada
         localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
-        // 5. atualiza tela
+        // 3. atualiza tela
         mostrarClientes();
     }
 });
