@@ -1,0 +1,243 @@
+body { 
+    font-family: Arial, sans-serif; 
+    margin: 20px; 
+    background-color: #f4f6f8; 
+}
+.container { 
+    max-width: 500px; 
+    margin: 40px auto; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+}
+.container-largo { 
+    max-width: 1000px; 
+    margin: 40px auto; 
+    background: white; 
+    padding: 30px; 
+    border-radius: 8px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); 
+}
+.formulario { margin-bottom: 20px; }
+input { 
+    width: 100%; 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    box-sizing: border-box; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+    font-size: 14px;
+}
+button, .btn-voltar { 
+    background-color: #007bff; 
+    color: white; 
+    border: none; 
+    padding: 12px; 
+    border-radius: 6px; 
+    cursor: pointer; 
+    width: 100%;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-sizing: border-box;
+}
+button:hover, .btn-voltar:hover { background-color: #0056b3; }
+hr { border: 0; border-top: 1px solid #eee; margin: 25px 0; }
+
+/* CARD DE ACESSO RÁPIDO */
+.card-acesso {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+.card-acesso-conteudo {
+    background-color: #f8f9fa;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s;
+}
+.card-acesso-conteudo:hover {
+    background-color: #e8f0fe;
+    transform: scale(1.02);
+}
+.card-acesso h3 { color: #007bff; margin: 0 0 5px 0; }
+.card-acesso p { margin: 0; font-size: 14px; color: #666; }
+
+/* CONFIGURAÇÃO DA LISTA DE CARDS */
+.topo-lista {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.topo-lista h2 { margin: 0; }
+.btn-voltar { width: auto; padding: 10px 20px; }
+.grid-clientes { 
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); 
+    gap: 15px; 
+}
+.cliente-card {
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 15px;
+    padding-top: 45px; /* espaço para a lixeira */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+.cliente-card p { margin: 5px 0; font-size: 14px; }
+
+/* Botão do WhatsApp dentro do Card */
+.btn-whatsapp {
+    display: block;
+    background-color: #25d366; /* Cor oficial do WhatsApp */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 12px;
+    transition: background-color 0.2s;
+}
+.btn-whatsapp:hover {
+    background-color: #1ebd58;
+}
+/* AJUSTE NO CARD PARA SUPORTAR O BOTÃO ABSOLUTO */
+.cliente-card { 
+    position: relative; /* OBRIGATÓRIO para o botão funcionar no canto */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px; 
+    padding: 15px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+/* BOTÃO REDONDO DE EXCLUIR */
+.btn-excluir {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 30px;
+    height: 30px;
+
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    z-index: 10;
+}
+.btn-excluir:hover {
+    background-color: #cc0000;
+    transform: scale(1.1); /* Dá uma leve aumentada ao passar o mouse */
+}
+.btn-historico,
+.btn-whatsapp {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.btn-historico {
+    background-color: #6c757d;
+    color: white;
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.btn-historico:hover {
+    background-color: #5a6268;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    color: white;
+}
+
+.btn-whatsapp:hover {
+    background-color: #1ebd58;
+}
+.status-lead,
+.status-desclassificado,
+.status-proposta,
+.status-nao-respondeu,
+.status-venda,
+.status-sem-retorno {
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.status-lead {
+    background: #28a745;
+}
+
+.status-desclassificado {
+    background: #dc3545;
+}
+
+.status-proposta {
+    background: #007bff;
+}
+
+.status-nao-respondeu {
+    background: #ffc107;
+    color: black;
+}
+
+.status-venda {
+    background: #000000;
+}
+
+.status-sem-retorno {
+    background: #e83e8c;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+}
+.select-status {
+    width: calc(100% - 50px);
+    padding: 6px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-weight: bold;
+}
