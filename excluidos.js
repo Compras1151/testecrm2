@@ -17,7 +17,7 @@ function mostrarExcluidos() {
             <p><strong>🗑 Excluído em:</strong> ${cliente.dataExclusao}</p>
         `;
 
-        // botão restaurar
+        // BOTÃO RESTAURAR
         const btnRestaurar = document.createElement('button');
         btnRestaurar.innerText = '♻ Restaurar';
 
@@ -25,9 +25,19 @@ function mostrarExcluidos() {
 
             let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 
+            // 🔎 VERIFICA SE JÁ EXISTE
+            const jaExiste = clientes.some(c => c.telefone === cliente.telefone);
+
+            if (jaExiste) {
+                alert("Esse cliente já existe na lista ativa!");
+                return;
+            }
+
+            // ♻ RESTAURA
             clientes.push(cliente);
             localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
+            // 🗑 REMOVE DA LIXEIRA
             excluidos.splice(index, 1);
             localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
