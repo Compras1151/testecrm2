@@ -2,18 +2,31 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Leads Excluídos</title>
 <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<input type="text" id="buscaExcluidos" placeholder="Buscar cliente...">
 
 <div class="container">
+
     <h2>🗑 Leads Excluídos</h2>
 
+    <!-- 🔍 Filtro de busca -->
+    <input 
+        type="text" 
+        id="buscaExcluidos" 
+        placeholder="Buscar cliente..." 
+        style="margin-bottom: 15px;"
+    >
+
+    <!-- 📋 Lista -->
     <div id="listaExcluidos"></div>
+
 </div>
 
 <script src="excluidos.js"></script>
+
 </body>
 </html>
