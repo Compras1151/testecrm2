@@ -51,6 +51,8 @@ function mostrarExcluidos(filtro = '') {
                 clientes.push(cliente);
                 localStorage.setItem('clientesCadastrados', JSON.stringify(clientes));
 
+                alert("♻ Cliente restaurado com sucesso!");
+
                 excluidos.splice(index, 1);
                 localStorage.setItem('leadsExcluidos', JSON.stringify(excluidos));
 
