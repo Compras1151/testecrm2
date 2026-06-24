@@ -1,3 +1,8 @@
+const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+if (!usuarioLogado) {
+    window.location.href = 'login.html';
+}
 const params = new URLSearchParams(window.location.search);
 const clienteIndex = params.get('id');
 
