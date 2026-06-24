@@ -287,3 +287,45 @@ label {
 
     border: 3px solid white;
 }
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.toast {
+    background: #333;
+    color: white;
+    padding: 12px 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    min-width: 200px;
+
+    font-size: 14px;
+
+    opacity: 0;
+    transform: translateX(100%);
+
+    animation: slideIn 0.3s forwards;
+}
+
+.toast.sucesso {
+    background: #2ecc71;
+}
+
+.toast.erro {
+    background: #e74c3c;
+}
+
+.toast.aviso {
+    background: #f1c40f;
+    color: black;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
