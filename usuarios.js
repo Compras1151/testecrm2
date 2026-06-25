@@ -1,3 +1,17 @@
+const usuarioLogado =
+    JSON.parse(localStorage.getItem('usuarioLogado'));
+
+if (!usuarioLogado) {
+    window.location.href = 'login.html';
+}
+
+if (usuarioLogado.cargo !== 'admin') {
+
+    alert('Acesso permitido apenas para administradores.');
+
+    window.location.href = 'index.html';
+}
+
 function mostrarToast(mensagem, tipo = "sucesso") {
 
     const container = document.getElementById('toast-container');
