@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
         usuarios = [
             {
                 nome: "Admin",
-                senha: "123456",
+                senha: "27/12/2007",
                 cargo: "admin"
             }
         ];
