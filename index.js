@@ -14,34 +14,63 @@ function mostrarToast(mensagem, tipo = "sucesso") {
     }, 3000);
 }
 
-const usuarioLogado =
-    JSON.parse(localStorage.getItem('usuarioLogado'));
+// =========================
+// VERIFICA LOGIN
+// =========================
 
-if (
-    usuarioLogado &&
-    usuarioLogado.cargo !== 'admin'
-) {
-    document.getElementById('menuUsuarios').style.display = 'none';
-}
-
-const usuarioLogado = localStorage.getItem('usuarioLogado');
+const usuarioLogado = JSON.parse(
+    localStorage.getItem('usuarioLogado')
+);
 
 if (!usuarioLogado) {
     window.location.href = 'login.html';
 }
-function atualizarContadorExcluidos() {
-    let excluidos = JSON.parse(localStorage.getItem('leadsExcluidos')) || [];
 
-    const el = document.getElementById('contadorExcluidos');
+// =========================
+// ESCONDE MENU USUÁRIOS
+// =========================
+
+const menuUsuarios =
+    document.getElementById('menuUsuarios');
+
+if (
+    menuUsuarios &&
+    usuarioLogado.cargo !== 'admin'
+) {
+    menuUsuarios.style.display = 'none';
+}
+
+// =========================
+// CONTADOR DE EXCLUÍDOS
+// =========================
+
+function atualizarContadorExcluidos() {
+
+    let excluidos =
+        JSON.parse(
+            localStorage.getItem('leadsExcluidos')
+        ) || [];
+
+    const el =
+        document.getElementById(
+            'contadorExcluidos'
+        );
+
     if (el) {
-        el.innerText = `🗑 Leads excluídos: ${excluidos.length}`;
+
+        el.innerText =
+            `🗑 Leads excluídos: ${excluidos.length}`;
     }
 }
 
 atualizarContadorExcluidos();
 
+// =========================
+// BOTÃO SAIR
+// =========================
+
 const btnSair =
-document.getElementById('btnSair');
+    document.getElementById('btnSair');
 
 if (btnSair) {
 
