@@ -21,13 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cria usuário admin caso não exista nenhum
     if (!usuarios || usuarios.length === 0) {
 
-        usuarios = [
-            {
-                nome: "Letícia",
-                senha: "27/12/2007",
-                cargo: "admin"
-            }
-        ];
+      usuarios = [];
 
         localStorage.setItem(
             'usuariosCRM',
