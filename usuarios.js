@@ -57,11 +57,7 @@ let usuarios = JSON.parse(
 
 if (usuarios.length === 0) {
 
-    usuarios.push({
-        nome: 'Letícia',
-        senha: '27/12/2007',
-        cargo: 'admin'
-    });
+   usuarios = [];
 
     localStorage.setItem(
         'usuariosCRM',
