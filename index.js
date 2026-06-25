@@ -1,8 +1,17 @@
 function mostrarToast(mensagem, tipo = "sucesso") {
 
-    const container = document.getElementById('toast-container');
+    const container =
+        document.getElementById(
+            'toast-container'
+        );
 
-    const toast = document.createElement('div');
+    if (!container) {
+        alert(mensagem);
+        return;
+    }
+
+    const toast =
+        document.createElement('div');
 
     toast.className = `toast ${tipo}`;
     toast.innerText = mensagem;
@@ -27,11 +36,34 @@ if (!usuarioLogado) {
 }
 
 // =========================
+// BOAS-VINDAS
+// =========================
+
+const bemVindo =
+    document.getElementById('bemVindo');
+
+if (bemVindo && usuarioLogado) {
+
+    bemVindo.innerHTML = `
+        <h3>
+            Bem-vindo,
+            ${usuarioLogado.nome}
+        </h3>
+        <p>
+            Cargo:
+            ${usuarioLogado.cargo}
+        </p>
+    `;
+}
+
+// =========================
 // ESCONDE MENU USUÁRIOS
 // =========================
 
 const menuUsuarios =
-    document.getElementById('menuUsuarios');
+    document.getElementById(
+        'menuUsuarios'
+    );
 
 if (
     menuUsuarios &&
@@ -41,24 +73,26 @@ if (
 }
 
 // =========================
-// CONTADOR DE EXCLUÍDOS
+// CONTADOR EXCLUÍDOS
 // =========================
 
 function atualizarContadorExcluidos() {
 
-    let excluidos =
+    const excluidos =
         JSON.parse(
-            localStorage.getItem('leadsExcluidos')
+            localStorage.getItem(
+                'leadsExcluidos'
+            )
         ) || [];
 
-    const el =
+    const contador =
         document.getElementById(
             'contadorExcluidos'
         );
 
-    if (el) {
+    if (contador) {
 
-        el.innerText =
+        contador.innerText =
             `🗑 Leads excluídos: ${excluidos.length}`;
     }
 }
@@ -66,21 +100,34 @@ function atualizarContadorExcluidos() {
 atualizarContadorExcluidos();
 
 // =========================
-// BOTÃO SAIR
+// SAIR
 // =========================
 
 const btnSair =
-    document.getElementById('btnSair');
+    document.getElementById(
+        'btnSair'
+    );
 
 if (btnSair) {
 
-    btnSair.addEventListener('click', () => {
+    btnSair.addEventListener(
+        'click',
+        () => {
 
-        localStorage.removeItem(
-            'usuarioLogado'
-        );
+            localStorage.removeItem(
+                'usuarioLogado'
+            );
 
-        window.location.href =
-            'login.html';
-    });
+            mostrarToast(
+                'Logout realizado!'
+            );
+
+            setTimeout(() => {
+
+                window.location.href =
+                    'login.html';
+
+            }, 500);
+        }
+    );
 }
