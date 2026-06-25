@@ -31,7 +31,7 @@ console.log("Encontrado:", usuario);
 
         usuarios = [
             {
-                nome: "Letícia de Avila Dalpra",
+                nome: "Admin",
                 senha: "123456",
                 cargo: "admin"
             }
