@@ -4,22 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRM - Painel Principal</title>
-    <button id="btnSair">Sair</button>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="logo-container">
+<div class="logo-container">
     <img src="logo.jpeg" alt="Logo" class="logo">
 </div>
+
+<button id="btnSair" class="btn-sair">🚪 Sair</button>
 
 <div class="container">
 
     <h1>📊 CRM - Painel Principal</h1>
 
-    <!-- 📊 CONTADOR DE EXCLUÍDOS -->
-    <div id="contadorExcluidos" style="margin-bottom: 15px; font-weight: bold;"></div>
+    <div id="bemVindo"></div>
+
+    <div id="contadorExcluidos"
+         style="margin-bottom:15px;font-weight:bold;">
+    </div>
 
     <div class="menu-cards">
 
@@ -44,21 +48,24 @@
             </div>
         </a>
 
-        <a href="usuarios.html" class="card-acesso">
-    <div class="card-acesso-conteudo">
-        <h3>👥 Usuários</h3>
-        <p>Gerenciar acessos ao sistema.</p>
+        <a href="usuarios.html"
+           id="menuUsuarios"
+           class="card-acesso">
+
+            <div class="card-acesso-conteudo">
+                <h3>👥 Usuários</h3>
+                <p>Gerenciar acessos ao sistema.</p>
+            </div>
+
+        </a>
+
     </div>
-</a>
-<a href="usuarios.html" id="menuUsuarios" class="card-acesso">
-    <div class="card-acesso-conteudo">
-        <h3>👥 Usuários</h3>
-        <p>Gerenciar acessos</p>
-    </div>
-</a>
-    </div>
+
 </div>
-    <script src="index.js"></script>
+
 <div id="toast-container"></div>
+
+<script src="index.js"></script>
+
 </body>
 </html>
