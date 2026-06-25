@@ -59,7 +59,7 @@ if (usuarios.length === 0) {
 
     usuarios.push({
         nome: 'Admin',
-        senha: '123456',
+        senha: '27/12/2007',
         cargo: 'admin'
     });
 
