@@ -17,6 +17,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let usuarios = JSON.parse(localStorage.getItem('usuariosCRM'));
 
+    const usuario = usuarios.find(u =>
+    u.nome.toLowerCase() === nome.toLowerCase() &&
+    u.senha === senha
+);
+
+console.log("Digitado:", nome, senha);
+console.log("Usuários:", usuarios);
+console.log("Encontrado:", usuario);
+
     // cria admin se não existir nada
     if (!usuarios || usuarios.length === 0) {
 
