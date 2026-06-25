@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         usuarios = [
             {
-                nome: "Admin",
+                nome: "Letícia",
                 senha: "27/12/2007",
                 cargo: "admin"
             }
