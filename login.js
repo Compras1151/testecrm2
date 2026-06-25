@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         usuarios = [
             {
-                nome: "Administrador",
+                nome: "Letícia de Avila Dalpra",
                 senha: "123456",
                 cargo: "admin"
             }
