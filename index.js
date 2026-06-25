@@ -14,6 +14,16 @@ function mostrarToast(mensagem, tipo = "sucesso") {
     }, 3000);
 }
 
+const usuarioLogado =
+    JSON.parse(localStorage.getItem('usuarioLogado'));
+
+if (
+    usuarioLogado &&
+    usuarioLogado.cargo !== 'admin'
+) {
+    document.getElementById('menuUsuarios').style.display = 'none';
+}
+
 const usuarioLogado = localStorage.getItem('usuarioLogado');
 
 if (!usuarioLogado) {
