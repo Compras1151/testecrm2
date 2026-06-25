@@ -1,4 +1,4 @@
-function mostrarToast(mensagem, tipo = "sucesso") {
+function mostrarToast(mensagem, tipo = "erro") {
 
     const container = document.getElementById('toast-container');
 
@@ -13,20 +13,12 @@ function mostrarToast(mensagem, tipo = "sucesso") {
         toast.remove();
     }, 3000);
 }
+
 document.addEventListener('DOMContentLoaded', () => {
 
     let usuarios = JSON.parse(localStorage.getItem('usuariosCRM'));
 
-    const usuario = usuarios.find(u =>
-    u.nome.toLowerCase() === nome.toLowerCase() &&
-    u.senha === senha
-);
-
-console.log("Digitado:", nome, senha);
-console.log("Usuários:", usuarios);
-console.log("Encontrado:", usuario);
-
-    // cria admin se não existir nada
+    // Cria usuário admin caso não exista nenhum
     if (!usuarios || usuarios.length === 0) {
 
         usuarios = [
@@ -50,13 +42,22 @@ console.log("Encontrado:", usuario);
         const nome = document.getElementById('usuario').value.trim();
         const senha = document.getElementById('senha').value.trim();
 
+        if (!nome || !senha) {
+            mostrarToast("Preencha usuário e senha!");
+            return;
+        }
+
         const usuario = usuarios.find(u =>
             u.nome.toLowerCase() === nome.toLowerCase() &&
             u.senha === senha
         );
 
+        console.log("Digitado:", nome, senha);
+        console.log("Usuários:", usuarios);
+        console.log("Encontrado:", usuario);
+
         if (!usuario) {
-mostrarToast("Usuário ou senha inválidos!"); 
+            mostrarToast("Usuário ou senha inválidos!");
             return;
         }
 
@@ -65,7 +66,11 @@ mostrarToast("Usuário ou senha inválidos!");
             JSON.stringify(usuario)
         );
 
-        window.location.href = 'index.html';
+        mostrarToast("Login realizado com sucesso!", "sucesso");
+
+        setTimeout(() => {
+            window.location.href = 'index.html';
+        }, 1000);
     });
 
 });
