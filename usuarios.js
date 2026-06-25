@@ -55,6 +55,20 @@ let usuarios = JSON.parse(
     localStorage.getItem('usuariosCRM')
 ) || [];
 
+if (usuarios.length === 0) {
+
+    usuarios.push({
+        nome: 'Admin',
+        senha: '123456',
+        cargo: 'admin'
+    });
+
+    localStorage.setItem(
+        'usuariosCRM',
+        JSON.stringify(usuarios)
+    );
+}
+
 const lista =
     document.getElementById('listaUsuarios');
 
