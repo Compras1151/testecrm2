@@ -13,10 +13,10 @@ function mostrarToast(mensagem, tipo = "sucesso") {
         toast.remove();
     }, 3000);
 }
-const usuarioLogado = localStorage.getItem('usuarioLogado');
-
-if (!usuarioLogado) {
-    window.location.href = 'login.html';
+const usuarioLogado = {
+    nome: "Administrador",
+    cargo: "admin"
+};
 }
 let clientes = JSON.parse(localStorage.getItem('clientesCadastrados')) || [];
 let excluidos = JSON.parse(localStorage.getItem('leadsExcluidos')) || [];
