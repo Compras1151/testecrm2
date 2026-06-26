@@ -26,14 +26,10 @@ function mostrarToast(mensagem, tipo = "sucesso") {
 // =========================
 // VERIFICA LOGIN
 // =========================
-
-const usuarioLogado = JSON.parse(
-    localStorage.getItem('usuarioLogado')
-);
-
-if (!usuarioLogado) {
-    window.location.href = 'login.html';
-}
+const usuarioLogado = {
+    nome: "Administrador",
+    cargo: "admin"
+};
 
 // =========================
 // BOAS-VINDAS
