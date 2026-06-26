@@ -1,7 +1,7 @@
-const usuarioLogado = localStorage.getItem('usuarioLogado');
-
-if (!usuarioLogado) {
-    window.location.href = 'login.html';
+const usuarioLogado = {
+    nome: "Administrador",
+    cargo: "admin"
+};
 }
 document.addEventListener('DOMContentLoaded', () => {
 
